@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_gPxEFfsU9BYTDqaCkFXY7');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_eb0tdfn', 'template_qh5v3jp', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="main-inner">
+                <div class="contact-us">
+                    <h2>contact us</h2>
+                    <div class="link">
+                        <a href="#">f</a>
+                        <a href="#">t</a>
+                        <a href="#">i</a>
+                    </div>
+                    <h3>Form</h3>
+                    <form action="" id="contact-form">
+                        <input type="hidden" name="contact_number">
+                        <p><input type="text" name="email" placeholder="Email" required></p>
+                        <p><input type="text" name="phone" placeholder="Phone"></p>
+                        <p>Your message:</p>
+                        <textarea name="message"></textarea>
+                        <p><input type="submit"></p>
+                    </form>
+                </div>
+                <div class="hello"></div>
+            </div>
+        </div>    
+    </main>
+</body>
+</html>
